@@ -8,15 +8,16 @@ export let errors = new Counter('errors');
 // Config stages: ramp nhanh lên 1000 VU
 export let options = {
   stages: [
-    { duration: '30s', target: 200 },   // nhanh lên 200 VU
-    { duration: '30s', target: 500 },   // nhanh lên 500 VU
-    { duration: '30s', target: 1000 },  // nhanh lên 1000 VU
-    { duration: '10m', target: 1000 },   // giữ 1000 VU trong 2 phút
-    { duration: '1m', target: 0 },      // giảm về 0
+    { duration: '1m', target: 500 },    // ramp lên 500 VU
+    { duration: '1m', target: 1000 },   // ramp lên 1000 VU
+    { duration: '1m', target: 2500 },   // ramp lên 2500 VU
+    { duration: '1m', target: 5000 },   // ramp lên 5000 VU
+    { duration: '5m', target: 5000 },  // giữ 5000 VU
+    { duration: '2m', target: 0 },      // ramp-down
   ],
   thresholds: {
-    http_req_failed: ['rate<0.05'],   // fail nếu >5% request fail
-    errors: ['count<1000000'],        // chỉ để theo dõi
+    http_req_failed: ['rate<0.05'],
+    errors: ['count<5000000'],
   },
 };
 
